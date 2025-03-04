@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    // 基础配置
+    "target": "ESNext",          // 编译目标版本
+    "module": "ESNext",          // 模块系统（ESM/CommonJS）
+    
+    // 模块解析关键配置
+    "moduleResolution": "bundler",  // 使用 Node.js 风格模块解析
+    "baseUrl": "./",             // 路径解析基准目录（通常设为项目根目录）
+    "paths": {                   // 路径别名映射（可选）
+      "@/*": ["src/*"]
+    },
+    
+    // 类型声明支持
+    "typeRoots": ["./node_modules/@types", "./src/types"], // 自定义类型目录
+    "types": ["node", "jest"],   // 显式包含全局类型
+    
+    // 兼容性配置
+    "allowSyntheticDefaultImports": true, // 允许默认导入无默认导出的模块
+    "esModuleInterop": true               // 增强 CommonJS/ESM 互操作性
+  },
+  
+  // 包含的文件范围
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

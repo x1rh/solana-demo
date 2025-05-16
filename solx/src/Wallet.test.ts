@@ -1,6 +1,6 @@
 import { PublicKey } from "@solana/web3.js";
 import {isErr} from "./util";
-import { generateWallet, loadWallet, monitorWallet } from "./wallet";
+import { generateWallet, loadWallet, monitorWallet } from "./WalletMonitor";
 
 describe('wallet', () => {
     it('generate wallet', () => {

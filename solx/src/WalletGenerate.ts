@@ -1,12 +1,9 @@
 import {Connection, Keypair, PublicKey} from "@solana/web3.js"
 import fs from "fs";
 import {Buffer} from "buffer";
-import {Result} from "./util" 
-
-
 
 // generateWallet: 生成key pair并保存
-export function generateWallet() {
+export function GenerateWallet() {
     const wallet = Keypair.generate();
     const publicKey = wallet.publicKey.toBase58();
     const secretKey = wallet.secretKey;

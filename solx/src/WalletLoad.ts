@@ -6,7 +6,7 @@ import {Result} from "./util"
 
 
 // loadWallet: 从本地文件导入钱包
-export function loadWallet(): Result<Keypair, Error> {
+export function LoadWallet(): Result<Keypair, Error> {
     const secretKey = Uint8Array.from(JSON.parse(fs.readFileSync("wallet.json", "utf8")));
     const wallet = Keypair.fromSecretKey(secretKey);
     return {value: wallet};

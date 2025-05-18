@@ -6,7 +6,7 @@ import { Connection, BlockhashWithExpiryBlockHeight, Commitment } from "@solana/
  * @param commitment 
  * @returns 包含 blockhash 和过期高度的对象
  */
-export async function getLatestBlockhash(
+export async function GetLatestBlockhash(
   conn: Connection,
   commitment: Commitment
 ): Promise<BlockhashWithExpiryBlockHeight> {

@@ -7,7 +7,7 @@ import { Connection, PublicKey, TokenAccountsFilter } from "@solana/web3.js"
  * @param mint 指定的 Token Mint 地址
  * @returns 包含账户信息的数组
  */
-export async function getTokenAccountsByOwner(
+export async function GetTokenAccountsByOwner(
   conn: Connection,
   owner: string | PublicKey,
   mint: string | PublicKey

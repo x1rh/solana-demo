@@ -5,7 +5,7 @@ import fs from "fs";
 // setComputeUnitPrice()
 // setComputeUnitLimit() 
 // 一般情况下，需要对自己的交易CU数量占用有所预估，固定此值，来灵活的调整CU价格参数，以此来保证优先执行
-export async function gasFeeExample() {
+export async function GasFeeExample() {
     const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
 
     const fromSecretKey = Uint8Array.from(JSON.parse(fs.readFileSync("wallet.json", "utf8")));

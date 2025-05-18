@@ -5,7 +5,7 @@ import { Connection } from "@solana/web3.js"
  * @param conn Solana 连接实例
  * @returns 首个可用区块编号
  */
-export async function getFirstAvailableBlock(conn: Connection): Promise<number> {
+export async function GetFirstAvailableBlock(conn: Connection): Promise<number> {
   try {
     const block = await conn.getFirstAvailableBlock()
     return block

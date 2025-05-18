@@ -1,7 +1,7 @@
 import {AddressLookupTableProgram, ComputeBudgetProgram, Connection, Keypair, PublicKey, sendAndConfirmTransaction, SystemProgram, Transaction, TransactionMessage, VersionedTransaction} from "@solana/web3.js"
 import fs from "fs";
 
-export async function SendTransaction() {
+export async function SendTx() {
     const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
     const fromSecretKey = Uint8Array.from(JSON.parse(fs.readFileSync("wallet.json", "utf8")));
     const fromWallet = Keypair.fromSecretKey(fromSecretKey);

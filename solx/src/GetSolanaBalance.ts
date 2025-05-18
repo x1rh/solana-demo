@@ -7,7 +7,7 @@ import {Commitment, Connection, LAMPORTS_PER_SOL, PublicKey} from "@solana/web3.
  * @param address 钱包地址（PublicKey 或字符串）
  * @returns 余额（单位 SOL）
  */
-export async function getSolanaBalance(
+export async function GetSolanaBalance(
   conn: Connection,
   address: PublicKey | string,
   commitment: Commitment

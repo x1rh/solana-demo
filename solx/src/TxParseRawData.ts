@@ -4,7 +4,7 @@ import BN  from "bn.js";
 
 // 解析二进制数据，通过数据格式和偏移量的方式强行计算某个特定值
 // 解析WSOL/USDC流动池中WSOL的USDC相对价格
-export async function parseRawData() {
+export async function ParseRawData() {
     const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
     const poolAccountPublicKey = new PublicKey('8sLbNZoA1cfnvMJLPfp98ZLAnFSYCFApfJKMbiXNLwxj');
     const accountInfo = await connection.getAccountInfo(poolAccountPublicKey);

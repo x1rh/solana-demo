@@ -1,14 +1,18 @@
-import { PublicKey } from "@solana/web3.js";
+import { Connection, PublicKey } from "@solana/web3.js";
 import {isErr} from "./util";
-import { generateWallet, loadWallet, monitorWallet } from "./WalletMonitor";
+import { MonitorWallet } from "./WalletMonitor";
+import { GenerateWallet } from "./WalletGenerate";
+import { LoadWallet } from "./WalletLoad";
 
-describe('wallet', () => {
-    it('generate wallet', () => {
-        generateWallet();
+describe('test wallet', () => {
+    const conn = new Connection("");
+
+    it('test WalletGenerate', () => {
+        GenerateWallet();
     });
 
-    it('load wallet', () => {
-        const result = loadWallet();
+    it("test WalletLoad", () => {
+        const result = LoadWallet();
         if(isErr(result)) {
             console.log(result.error);
             return;
@@ -18,11 +22,11 @@ describe('wallet', () => {
         console.log(`钱包公钥: ${publicKey}`);
         console.log(`钱包私钥: ${wallet.secretKey}`);
         console.log(`私钥base64: ${Buffer.from(wallet.secretKey).toString("base64")}`);
-    })
+    });
 
-    it('monitor wallet', () => {
+    it('test WalletMonitor', () => {
         const publicKey = new PublicKey('orcACRJYTFjTeo2pV8TfYRTpmqfoYgbVi9GeANXTCc8');
-        monitorWallet(publicKey);
-    })
+        MonitorWallet(publicKey);
+    });
 });
 

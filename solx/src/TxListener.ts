@@ -2,7 +2,7 @@ import {AddressLookupTableProgram, ComputeBudgetProgram, Connection, Keypair, Pu
 import fs from "fs";
 
 
-export async function listenTx() {
+export async function ListenTx() {
     const conn = new Connection("https://api.mainnet-beta.solana.com");
 
     // onAccountChange

@@ -1,9 +1,9 @@
-import {Connection, Keypair, PublicKey, sendAndConfirmTransaction, SystemProgram, Transaction} from "@solana/web3.js"
+import {Connection, PublicKey} from "@solana/web3.js"
 import BN  from "bn.js";
 
 
 // 监听WSOL/USDC交易对WSOL的价格
-export async function TokenPriceMonitor() {
+export async function MonitorTokenPrice() {
    const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
 
     connection.onAccountChange(

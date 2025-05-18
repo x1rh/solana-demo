@@ -1,7 +1,7 @@
-import { monitorRaydiumNewPool } from "./DexRaydiumNewPoolMonitor"
+import { MonitorRaydiumNewPool } from "./DexRaydiumNewPoolMonitor"
 
-describe('raydium', () => {
-    it('monitor raydium pool', () => {
-        monitorRaydiumNewPool();
+describe('test dex raydium', () => {
+    it('test monitorRaydiumNewPool', () => {
+        MonitorRaydiumNewPool();
     })
 })

@@ -7,7 +7,7 @@ import { Connection, PublicKey, ConfirmedSignatureInfo } from "@solana/web3.js"
  * @param limit 限制返回的交易数量，默认 10
  * @returns 最近的交易签名信息数组
  */
-export async function getWalletTransactions(
+export async function GetWalletTxs(
   conn: Connection,
   address: string | PublicKey,
   limit: number = 10

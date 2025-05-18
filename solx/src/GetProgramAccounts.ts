@@ -1,4 +1,4 @@
-import { Connection, PublicKey, ParsedAccountData } from "@solana/web3.js"
+import { Connection, PublicKey, ParsedAccountData, AccountInfo } from "@solana/web3.js"
 
 /**
  * 获取指定 mint 地址下的所有 SPL Token 持有者账户（getParsedProgramAccounts）
@@ -6,10 +6,13 @@ import { Connection, PublicKey, ParsedAccountData } from "@solana/web3.js"
  * @param mintAddress Token 的 Mint 地址（string 或 PublicKey）
  * @returns 所有符合条件的账户（已解析）
  */
-export async function getTokenAccountsByMint(
+export async function GetTokenAccountsByMint(
   conn: Connection,
   mintAddress: string | PublicKey
-) {
+): Promise<Array<{
+  pubkey: PublicKey;
+  account: AccountInfo<Buffer | ParsedAccountData>;
+}>> {
   try {
     const mint = typeof mintAddress === "string" ? new PublicKey(mintAddress) : mintAddress
     const tokenProgramId = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")

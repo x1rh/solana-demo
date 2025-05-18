@@ -1,4 +1,4 @@
-import { Connection, ParsedTransactionWithMeta } from "@solana/web3.js"
+import { Commitment, Connection, ParsedTransactionWithMeta } from "@solana/web3.js"
 
 /**
  * 解析指定交易哈希的 Solana Transaction
@@ -7,9 +7,10 @@ import { Connection, ParsedTransactionWithMeta } from "@solana/web3.js"
  * @param version 最大支持的交易版本（默认 0）
  * @returns 解析后的交易对象，若不存在则返回 null
  */
-export async function parseTransaction(
+export async function ParseTx(
   conn: Connection,
   signature: string,
+  commitment: Commitment,
   version: number = 0
 ): Promise<ParsedTransactionWithMeta | null> {
   try {

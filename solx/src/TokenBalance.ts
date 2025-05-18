@@ -6,7 +6,7 @@ import { Connection, PublicKey, RpcResponseAndContext, TokenAmount } from "@sola
  * @param tokenAccountAddress SPL Token 的账户地址（非 owner 地址）
  * @returns TokenAmount 对象，包含 amount 和 uiAmount 等
  */
-export async function getTokenBalance(
+export async function GetTokenBalance(
   conn: Connection,
   tokenAccountAddress: string | PublicKey
 ): Promise<TokenAmount> {

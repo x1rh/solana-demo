@@ -2,7 +2,7 @@ import {Connection, PublicKey} from "@solana/web3.js"
 
 
 // 监听raydium新流动池的创建 
-export async function monitorRaydiumNewPool() {
+export async function MonitorRaydiumNewPool() {
     const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
     const raydiumV4PublicKey = new PublicKey('675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8');
     connection.onLogs(

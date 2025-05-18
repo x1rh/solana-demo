@@ -1,43 +1,48 @@
-import { Connection } from "@solana/web3.js";
-import { getData, getWalletSolanaBalance, parseRawData } from "./ParseRawData"
-import { GetTokenBalance } from "./TokenBalance";
-import { getTokenAccountsByMint } from "./GetProgramAccounts";
+import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import {GetSolanaBalance} from "./GetSolanaBalance"
+import { GetTokenAccountsByMint } from "./GetProgramAccounts";
+import { GetAccountInfo } from "./GetAccountInfo";
+import { GetWalletTxs } from "./GetWalletTxs";
 
-describe('read data from chain', () => {
+describe('test all getter', () => {
     const conn = new Connection("https://api.mainnet-beta.solana.com");
 
-    it('get wallet solana balance', () => {
-        getWalletSolanaBalance();
-    })
-
-    it('get data', () => {
-        getData();
-    })
-
-    it('parse raw data from tx', () => {
-        parseRawData();
-    })
-
-    it("test get token balance", () => {
-        const result = await GetTokenBalance(conn);
-        console.log(`token account detail: ${JSON.stringify(tokenAccountBalance)}`);
-    })
-
-    it("test get account info", () => {
+    it("test GetAccountInfo", async() => {
         // 获取已解析的账户详细信息
-        const accountInfo = await conn.getAccountInfo(new PublicKey('8sLbNZoA1cfnvMJLPfp98ZLAnFSYCFApfJKMbiXNLwxj'), "confirmed");
+        const account = new PublicKey('8sLbNZoA1cfnvMJLPfp98ZLAnFSYCFApfJKMbiXNLwxj');
+        const commitment = "confirmed";
+        const accountInfo = await GetAccountInfo(conn, commitment);
         console.log("账户信息：", accountInfo)
+    });
+
+    it("test GetCurrentSlot", async() => {
+
     })
 
-    it("test get account", () => { 
+    it("test GetFirstAvailableBlock", async() => {
+
+    })
+
+    it("test GetLatestBlockhash", async() => {
+
+    })
+
+    it("test GetProgramAccounts", async() => {
         // 批量获取某个程序账户下的所有账户信息
         // 获取代币mint地址为Dp4fXozKtwgK1cL5KQeeNbuAgFpJtY3FbAvL8JrWpump的所有持有者
         const mintAddress = new PublicKey("Dp4fXozKtwgK1cL5KQeeNbuAgFpJtY3FbAvL8JrWpump")
-        const accounts = getTokenAccountsByMint(mintAddress);
+        const accounts = await GetTokenAccountsByMint(conn, mintAddress);
         console.log("前3个账户:",  accounts.slice(0, 3));
     })
 
-    it("test get token accounts by owner", () => { 
+    it("test GetSolanaBalance", async() => {
+        const address = new PublicKey("CXPeim1wQMkcTvEHx9QdhgKREYYJD8bnaCCqPRwJ1to1");
+        const commitment = "confirmed";
+        const solanaBalance = await GetSolanaBalance(conn, address, commitment);
+        console.log(`balance: ${solanaBalance / LAMPORTS_PER_SOL}`)
+    })
+
+    it("test GetTokenAccountsByOwner", async() => {
         // 用于查询某个账户下所有的代币账户 
         const tokenAccountsByOwner = await conn.getTokenAccountsByOwner(
             new PublicKey("web3xFMwEPrc92NeeXdAigni95NDnnd2NPuajTirao2"), 
@@ -47,21 +52,15 @@ describe('read data from chain', () => {
             "confirmed",
         );
         console.log(`token账户: ${JSON.stringify(tokenAccountsByOwner)}\n`);
+
     })
 
-    it("test get wallet txs", () => {
+    it("test GetWalletTxs", async() => {
         // 获取某个钱包最近limit笔交易
-        const signatures = await conn.getSignaturesForAddress(new PublicKey("web3xFMwEPrc92NeeXdAigni95NDnnd2NPuajTirao2"), {
-            limit: 3
-        });
+        const wallet = new PublicKey("web3xFMwEPrc92NeeXdAigni95NDnnd2NPuajTirao2");
+        const limit = 3;
+        const signatures = GetWalletTxs(conn, wallet, limit);
         console.log(`最近的3笔交易签名: ${JSON.stringify(signatures)}\n`);
     })
 })
 
-
-// export async function GetSolanaBalance(conn: Connection, publicKey: PublicKey) {
-//    // const conn = new Connection("https://api.mainnet-beta.solana.com", "finalized") 
-//    // const publicKey = new PublicKey("CXPeim1wQMkcTvEHx9QdhgKREYYJD8bnaCCqPRwJ1to1");
-//    const balance = await conn.getBalance(publicKey);
-//    console.log(`balance: ${balance / LAMPORTS_PER_SOL}`)
-// }

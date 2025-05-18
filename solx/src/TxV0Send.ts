@@ -5,7 +5,7 @@ import fs from "fs";
 // 版本化交易（Versioned Transactions）或称 v0 交易是Solana更新过程中引入的一种新的交易类型。
 // 因传统（legacy）交易账户数量的限制，v0 交易中引入了地址查找表（Address Lookup Tables）功能，用于压缩账户数量，将账户数量限制由35个提升到了64个。
 // address lookup table（ALT）
-export async function sendV0Transaction() {
+export async function SendV0Tx() {
     const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
     const secretKey = Uint8Array.from(JSON.parse(fs.readFileSync("wallet.json", "utf8")));
     const payer = Keypair.fromSecretKey(secretKey);

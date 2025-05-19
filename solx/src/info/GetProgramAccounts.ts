@@ -1,4 +1,4 @@
-import { Connection, PublicKey, ParsedAccountData, AccountInfo } from "@solana/web3.js"
+import { Connection, PublicKey, ParsedAccountData, AccountInfo, Commitment } from "@solana/web3.js"
 
 /**
  * 获取指定 mint 地址下的所有 SPL Token 持有者账户（getParsedProgramAccounts）
@@ -8,16 +8,17 @@ import { Connection, PublicKey, ParsedAccountData, AccountInfo } from "@solana/w
  */
 export async function GetTokenAccountsByMint(
   conn: Connection,
-  mintAddress: string | PublicKey
+  mintAddress: string | PublicKey,
+  commitment: Commitment = "finalized",
 ): Promise<Array<{
   pubkey: PublicKey;
   account: AccountInfo<Buffer | ParsedAccountData>;
 }>> {
   try {
-    const mint = typeof mintAddress === "string" ? new PublicKey(mintAddress) : mintAddress
-    const tokenProgramId = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
-
+    const mint = typeof mintAddress === "string" ? new PublicKey(mintAddress) : mintAddress;
+    const tokenProgramId = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
     const accounts = await conn.getParsedProgramAccounts(tokenProgramId, {
+      commitment: commitment, 
       filters: [
         {
           dataSize: 165, // SPL Token账户固定大小
@@ -29,11 +30,10 @@ export async function GetTokenAccountsByMint(
           },
         },
       ],
-    })
-
-    return accounts
+    });
+    return accounts;
   } catch (err) {
-    console.error("Failed to fetch token accounts by mint:", err)
-    throw err
+    console.error("Failed to fetch token accounts by mint:", err);
+    throw err;
   }
 }

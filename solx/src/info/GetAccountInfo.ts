@@ -1,4 +1,4 @@
-import { Connection, PublicKey, AccountInfo } from "@solana/web3.js"
+import { Connection, PublicKey, AccountInfo, Commitment } from "@solana/web3.js"
 
 /**
  * 获取某个账户的原始 AccountInfo（未解析的账户数据）
@@ -8,14 +8,15 @@ import { Connection, PublicKey, AccountInfo } from "@solana/web3.js"
  */
 export async function GetAccountInfo(
   conn: Connection,
-  address: PublicKey | string
+  address: PublicKey | string,
+  commitment: Commitment,
 ): Promise<AccountInfo<Buffer> | null> {
   try {
     const pubkey = typeof address === "string" ? new PublicKey(address) : address
-    const info = await conn.getAccountInfo(pubkey, "confirmed")
+    const info = await conn.getAccountInfo(pubkey, commitment)
     return info
   } catch (err) {
-    console.error("Failed to get account info:", err)
+    console.error("Failed to get account info:", err);
     throw err
   }
 }

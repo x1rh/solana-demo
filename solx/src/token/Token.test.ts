@@ -2,8 +2,8 @@ import { Connection, PublicKey } from "@solana/web3.js";
 import { AnalysisTokenHolders} from "./TokenHoldersAnalysis";
 import { CloseATA } from "./TokenATAClose"
 import { GetTokenBalance } from "./TokenBalance";
-import { MonitorTokenPrice } from "./TokenPriceMonitor";
 import { LaunchToken } from "./TokenLaunch";
+import { MonitorTokenPrice } from "./TokenPriceMonitor";
 
 describe('token', () => {
     const conn = new Connection("https://api.mainnet-beta.solana.com");
